@@ -1,0 +1,45 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_employee %}
+        Add Employee
+    {% else %}
+        Edit Employee
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+    <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Username </th>
+                  <th width="40%">  Email</th>
+
+
+                  <th width="15%"> Edit </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for employee in employee %}
+                <tr>
+                  <td> {{ employee.username }} </td>
+                  <td> {{ employee.email }} </td>
+
+                  <td>
+                    <a href="{{ url_for('admin.edit_employee', id = employee.id) }}">
+                      <i class="fa fa-pencil"></i> Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.delete_employee',id = employee.id) }}">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+    </table>
+</div>
+{% endblock %}

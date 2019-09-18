@@ -1,0 +1,51 @@
+<!-- app/templates/home/dashboard_showall.html -->
+
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<div class="content-section">
+    <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Task </th>
+                  <th width="40%">  Description</th>
+                    <th width="15%"> Status </th>
+                     <th width="15%"> Importance </th>
+                    <th width="15%"> To whom </th>
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+              {% for task in tasks %}
+                <tr>
+                  <td> {{ task.name }} </td>
+                  <td> {{ task.description }} </td>
+                    <td> {{ task.status }} </td>
+                    <td> {{ task.importance }} </td>
+                     <td> {{ task.towhom }} </td>
+                    <td>
+                        <a href="{{ url_for('home.changestatus', id = task.id) }}">
+                      <i class="fa fa-pencil"></i> To change the status of your task
+                    </a>
+                        <br>
+                        <a href="{{ url_for('home.showtaskparticular',towhom = task.towhom) }}">
+                      <i class="fa fa-pencil"></i> To view  all tasks assigned to this employee
+                    </a>
+                    </td>
+
+                </tr>
+
+
+              {% endfor %}
+              </tbody>
+
+
+    </table>
+
+
+
+</div>
+
+{% endblock %}

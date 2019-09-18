@@ -1,0 +1,35 @@
+<!-- app/templates/admin/departments/departments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_employee %}
+        Add Task
+    {% else %}
+        Edit Task
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        {{ utils.flashed_messages() }}
+
+        <div class="center">
+             {% if add_employee %}
+                <h1>Add Employee</h1>
+             {% else %}
+                <h1>Edit Employee</h1>
+             {% endif %}
+              <br/>
+             {{ wtf.quick_form(form) }}
+            <br>
+            <br>
+            <a href="{{ url_for('admin.list_employee') }}">SHOW ALL TASKS</a>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
